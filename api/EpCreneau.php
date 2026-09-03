@@ -1,6 +1,6 @@
 <?php
 require_once "./php/http/Http_sendRequest.php";
-require_once "./php/fonction/functionCours.php";
+require_once "./php/fonction/functionCreneau.php";
 $token = lireJetton();
 $verb = $_SERVER["REQUEST_METHOD"];
 $body = DecodePost();

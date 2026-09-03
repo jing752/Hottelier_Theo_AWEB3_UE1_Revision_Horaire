@@ -1,9 +1,9 @@
 <?php
-require_once "./php/sql/cours.php";
+require_once "./php/sql/creneau.php";
 require_once "./php/http/Http_sendRequest.php";
 function TraiterGet() 
 {
-    $data = GetAllCours();
+    $data = GetAllCreneau();
     if ($data !== []) {
             return [
                 "code" => HTTP_OK,
