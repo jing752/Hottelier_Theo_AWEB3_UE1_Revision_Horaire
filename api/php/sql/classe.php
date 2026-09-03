@@ -1,9 +1,9 @@
 <?php
 require_once "./php/db/database.php";
-function GetAllCours(): array
+function GetAllClasse(): array
 {
     $statement = db()->prepare(
-        "SELECT * FROM `cours`"
+        "SELECT * FROM `classes`"
     );
     $statement->execute();
     return $statement->fetchAll();
