@@ -8,3 +8,4 @@ function GetAllCours(): array
     $statement->execute();
     return $statement->fetchAll();
 }
+
