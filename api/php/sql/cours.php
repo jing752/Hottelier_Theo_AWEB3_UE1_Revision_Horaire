@@ -9,3 +9,15 @@ function GetAllCours(): array
     return $statement->fetchAll();
 }
 
+function GetCoursByName(string $nom)
+{
+    $params = [
+        ":nom" => $nom
+    ];
+    $statement = db()->prepare(
+        "SELECT * FROM `cours`
+        WHERE code = :nom"
+    );
+    $statement->execute($params);
+    return $statement->fetch();
+}

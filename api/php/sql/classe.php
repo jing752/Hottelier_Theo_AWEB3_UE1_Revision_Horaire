@@ -8,3 +8,16 @@ function GetAllClasse(): array
     $statement->execute();
     return $statement->fetchAll();
 }
+
+function GetClasseByName(string $nom)
+{
+    $params = [
+        ":nom" => $nom
+    ];
+    $statement = db()->prepare(
+        "SELECT * FROM `classes`
+        WHERE nom = :nom"
+    );
+    $statement->execute($params);
+    return $statement->fetch();
+}
