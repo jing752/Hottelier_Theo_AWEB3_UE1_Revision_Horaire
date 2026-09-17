@@ -6,9 +6,10 @@ require_once "./php/http/Http_sendRequest.php";
 function TraiterGet()
 {
     $id = filter_input(INPUT_GET, "name", FILTER_SANITIZE_SPECIAL_CHARS);
-    if (!isset($id)) {
+    if (isset($id)) {
         $data = GetAllCreneauByClasseName($id);
-        if (!$data) {
+        if ($data ==! false) {
+            
             return [
                 "code" => HTTP_OK,
                 "data" => $data
