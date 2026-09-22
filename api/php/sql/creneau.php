@@ -16,10 +16,12 @@ function GetCreneauByClasseName(string $name): array
     ];
     $statement = db()->prepare(
         'SELECT 
+        creneaux.id,
         creneaux.jour,
         creneaux.heure_debut,
         creneaux.heure_fin,
-        cours.nom,
+        creneaux.salle,
+        cours.nom as cours,
         classes.nom as Classe
         FROM `creneaux`
         INNER JOIN classes ON classes.id = creneaux.classe_id

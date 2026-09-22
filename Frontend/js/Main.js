@@ -20,7 +20,7 @@ function AfficheClasse(data) {
         html += `<tr>
                     <th scope="row">${element.id}</th>
                     <td>${element.nom}</td>
-                    <td><a href="./details.html??nom=${element.nom}" class="btn btn-sm btn-primary">Click</a></td>
+                    <td><a href="./details.html?nom=${element.nom}" class="btn btn-sm btn-primary">Click</a></td>
                 </tr>`
     });
     container.innerHTML = html
