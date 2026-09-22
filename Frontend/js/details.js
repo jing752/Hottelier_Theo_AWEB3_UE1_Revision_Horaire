@@ -1,12 +1,10 @@
 const params = new URLSearchParams(window.location.search);
 
-// Lancement de la récupération au chargement du script
 RecupererLesClasse();
 
 async function RecupererLesClasse() {
     const classe = params.get("nom");
     
-    // Affiche le nom de la classe dans le titre h1
     const titleElement = document.querySelector("h1");
     titleElement.innerHTML ="Horaire de la " + classe;
     
@@ -22,7 +20,6 @@ async function RecupererLesClasse() {
         AfficheClasse(data);
 
     } catch (err) {
-        // En cas d'erreur, remplace le contenu du conteneur #table par un message stylisé
         const tableContainer = document.querySelector("#table");
             tableContainer.innerHTML = `<h1 class="text-danger text-center my-5">${err.message}</h1>`;
     }
@@ -41,7 +38,7 @@ function AfficheClasse(data) {
                     <td>${element.heure_debut}</td>
                     <td>${element.heure_fin}</td>
                     <td>${element.salle}</td>
-                    <td><a href="#" class="btn btn-sm btn-primary">Modifier</a></td>
+                    <td><a href="./modifier.html?id=${element.id}" class="btn btn-sm btn-primary">Modifier</a></td>
                     <td><button class="btn btn-sm btn-danger btn-supprimer" data-id="${element.id}">Supprimer</button></td>
                 </tr>`;
     });
@@ -62,7 +59,6 @@ async function SupprimerCreneau(id) {
     const options = {
         method: 'DELETE',
         headers: {
-            Authorization: 'Bearer a67c5992c04712fdf23dd8be5e7a6bc6',
             'Content-Type': 'application/json'
         }
     };

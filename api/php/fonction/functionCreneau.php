@@ -7,14 +7,12 @@ function TraiterGet()
 {
     $id = filter_input(INPUT_GET, "name", FILTER_SANITIZE_SPECIAL_CHARS);
     if (isset($id)) {
-        if(!GetClasseByName($id)){
-         return [
+        if (!GetClasseByName($id)) {
+            return [
                 "code" => HTTP_BAS_REQUEST,
                 "data" => ["cours" => "Ce Cours n'existe pas"]
             ];
-        }
-        else{
-            
+        } else {
         }
         $data = GetCreneauByClasseName($id);
         if ($data == ! []) {
@@ -138,6 +136,7 @@ function TraiterPost(array $body): array
 }
 function TraiterPut(array $body, string $token): array
 {
+    $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
     $classe_id = 0;
     $cours_id = 0;
     $jour = "";
@@ -147,6 +146,13 @@ function TraiterPut(array $body, string $token): array
     $critereRespecter = true;
     $code = HTTP_CREATED;
     $data = [];
+    if (is_int($id)) {
+        if (!GetCreneauById($id)) {
+            array_push($data, ["id" => "Cette id n'existe pas"]);
+        }
+    } else {
+        array_push($data, ["id" => "Paramètre manquant"]);
+    }
     //Verification du champ classe
     if (!isset($body["classe"])) {
         $critereRespecter = false;
@@ -221,7 +227,7 @@ function TraiterPut(array $body, string $token): array
     }
 
     if ($critereRespecter) {
-        AddCreneau($classe_id, $cours_id, $jour, $heure_debut, $heure_fin, $salle);
+        updateCreneau($id, $classe_id, $cours_id, $jour, $heure_debut, $heure_fin, $salle);
         return [
             "code" => $code,
             "data" => ["Succes" => "Ajout avec Succes"]

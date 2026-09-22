@@ -1,3 +1,4 @@
+const params = new URLSearchParams(window.location.search);
 async function RecupereCours() {
     const url = `http://localhost/3e/AWEB2/Hottelier_Theo_AWEB3_UE1_Revision_Horai/api/EpCours.php`
     try {
@@ -63,16 +64,16 @@ document.querySelector("form").addEventListener("submit", (element) => {
     let heure_debut = formdata.get("heure_debut")
     let heure_fin = formdata.get("heure_fin")
     let salle = formdata.get("salle")
-
-    AjouterCreneau(classe,cours,jour,heure_debut,heure_fin,salle)
+    const id = params.get("id");
+    ModifierCreneau(id,classe,cours,jour,heure_debut,heure_fin,salle)
 
 })
 
-async function AjouterCreneau(classe, cours, jour, heure_debut, heure_fin, salle) {
-    const url = 'http://localhost/3e/AWEB2/Hottelier_Theo_AWEB3_UE1_Revision_Horai/api/EpCreneau.php';
+async function ModifierCreneau(id,classe, cours, jour, heure_debut, heure_fin, salle) {
+    const url = 'http://localhost/3e/AWEB2/Hottelier_Theo_AWEB3_UE1_Revision_Horai/api/EpCreneau.php?id='+id;
     
     const options = {
-        method: 'POST',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -94,11 +95,11 @@ async function AjouterCreneau(classe, cours, jour, heure_debut, heure_fin, salle
         const data = await response.json();
         console.log("Succès :", data);
         document.querySelector("#alert").classList.remove("d-none");
-        document.querySelector("#alert").innerHTML = "Ajout Reussi"
+        document.querySelector("#alert").innerHTML = "Modification Reussi"
     } catch (error) {
         console.error("Erreur :", error);
         document.querySelector("#alert").classList.remove("alert-success");
-        document.querySelector("#alert").innerHTML = "Ajout louper"
+        document.querySelector("#alert").innerHTML = "Modification louper"
         document.querySelector("#alert").classList.add("alert-danger");
     }
 }
