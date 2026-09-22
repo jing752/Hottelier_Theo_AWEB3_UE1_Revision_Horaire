@@ -1,28 +1,36 @@
 const params = new URLSearchParams(window.location.search);
 
+// Lancement de la récupération au chargement du script
 RecupererLesClasse();
 
 async function RecupererLesClasse() {
     const classe = params.get("nom");
-    document.querySelector("h1").innerHTML += classe;
+    
+    // Affiche le nom de la classe dans le titre h1
+    const titleElement = document.querySelector("h1");
+    titleElement.innerHTML ="Horaire de la " + classe;
+    
+    
     const url = `http://localhost/3e/AWEB2/Hottelier_Theo_AWEB3_UE1_Revision_Horai/api/EpCreneau.php?name=${classe}`;
 
     try {
         const reponse = await fetch(url);
 
-        if (!reponse.ok) throw new Error("Classe introuvable");
+        if (!reponse.ok) throw new Error("Classe introuvable ou erreur de chargement");
 
         const data = await reponse.json();
         AfficheClasse(data);
 
     } catch (err) {
-
-        document.querySelector("#table").innerHTML = `<h1 class="text-danger">${err.message}</h1>`;
+        // En cas d'erreur, remplace le contenu du conteneur #table par un message stylisé
+        const tableContainer = document.querySelector("#table");
+            tableContainer.innerHTML = `<h1 class="text-danger text-center my-5">${err.message}</h1>`;
     }
 }
 
 function AfficheClasse(data) {
     const container = document.querySelector("#horaire");
+    
     let html = "";
 
     data.forEach(element => {
@@ -34,9 +42,39 @@ function AfficheClasse(data) {
                     <td>${element.heure_fin}</td>
                     <td>${element.salle}</td>
                     <td><a href="#" class="btn btn-sm btn-primary">Modifier</a></td>
-                    <td><a href="#" class="btn btn-sm btn-danger">Supprimer</a></td>
+                    <td><button class="btn btn-sm btn-danger btn-supprimer" data-id="${element.id}">Supprimer</button></td>
                 </tr>`;
     });
-
+    
     container.innerHTML = html;
+
+    document.querySelectorAll(".btn-supprimer").forEach(button => {
+        button.addEventListener("click", (e) => {
+            const idCreneau = e.target.getAttribute("data-id");
+            SupprimerCreneau(idCreneau);
+        });
+    });
+}
+
+async function SupprimerCreneau(id) {
+    const url = `http://localhost/3e/AWEB2/Hottelier_Theo_AWEB3_UE1_Revision_Horai/api/EpCreneau.php?id=${id}`;
+
+    const options = {
+        method: 'DELETE',
+        headers: {
+            Authorization: 'Bearer a67c5992c04712fdf23dd8be5e7a6bc6',
+            'Content-Type': 'application/json'
+        }
+    };
+
+    try {
+        const response = await fetch(url, options);
+
+        if (!response.ok) throw new Error("Erreur lors de la suppression");
+
+        RecupererLesClasse();
+
+    } catch (error) {
+
+    }
 }
