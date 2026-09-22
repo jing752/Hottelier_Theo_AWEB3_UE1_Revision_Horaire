@@ -7,8 +7,17 @@ function TraiterGet()
 {
     $id = filter_input(INPUT_GET, "name", FILTER_SANITIZE_SPECIAL_CHARS);
     if (isset($id)) {
+        if(!GetClasseByName($id)){
+         return [
+                "code" => HTTP_BAS_REQUEST,
+                "data" => ["cours" => "ce cours n'existe pas"]
+            ];
+        }
+        else{
+            
+        }
         $data = GetCreneauByClasseName($id);
-        if ($data == ! false) {
+        if ($data == ! []) {
 
             return [
                 "code" => HTTP_OK,
@@ -16,8 +25,8 @@ function TraiterGet()
             ];
         } else {
             return [
-                "code" => HTTP_BAS_REQUEST,
-                "data" => ["name" => "Cette Classe n'existe pas"]
+                "code" => HTTP_OK,
+                "data" => []
             ];
         }
     } else {
