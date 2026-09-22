@@ -9,15 +9,6 @@ switch ($verb) {
     case "GET":
         $reponse = TraiterGet();
         break;
-    case "POST":
-        $reponse = TraiterPost($body);
-        break;
-    case "PUT":
-        $reponse = TraiterPut($body, $token);
-        break;
-    case "DELETE":
-        $reponse = TraiterDelete($body);
-        break;
     default:
         $reponse = [
             "data" => "Méthode non autorisée",

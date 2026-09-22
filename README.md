@@ -1,15 +1,61 @@
-# My Projet
+# Mon projet
 
 ## Explication de l'API
 
-### En Construction
+### EpCreneau
 
-## Difficultés rencontrer lors du projet
+#### GET
 
-### Reprise de php
+On peut récupérer tous les créneaux en ne mettant aucun paramètre ; mais si on met un paramètre `name` dans l'URL, on peut retourner l'horaire d'une seule classe.
 
-pour ma part ça fait plus ou moin de puis Mars j'ai pas refait du php donc la reprise etait dure
+#### POST
 
-### absence
+On peut créer un créneau en envoyant un JSON sous cette forme :
 
-mes absence répété lors de l'athelier on fait que j'ai pas pu respecter les delais
+{
+  "classe": "classe",
+  "cours": "cours",
+  "jour": "jour",
+  "heure_debut": "HH:MM",
+  "heure_fin": "HH:MM",
+  "salle": "salle"
+}
+
+#### PUT
+
+On peut mettre à jour un créneau en envoyant un JSON sous cette forme et en fournissant l'id dans l'URL :
+
+{
+  "classe": "classe",
+  "cours": "cours",
+  "jour": "jour",
+  "heure_debut": "HH:MM",
+  "heure_fin": "HH:MM",
+  "salle": "salle"
+}
+
+#### DELETE
+
+On peut supprimer un créneau en mettant l'id dans l'URL.
+
+### EpCours
+
+On peut récupérer tous les cours.
+
+#### GET
+
+### EpClasse
+
+#### GET
+
+On peut récupérer toutes les classes.
+
+## Difficultés rencontrées pendant le projet
+
+### Reprise de PHP
+
+Pour ma part, cela fait plus ou moins depuis mars que je n'ai pas pratiqué PHP, donc la reprise a été difficile.
+
+### Absences
+
+Mes absences répétées lors de l'atelier ont fait que je n'ai pas pu respecter les délais.
