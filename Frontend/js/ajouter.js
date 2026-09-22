@@ -52,3 +52,54 @@ function AfficheClasse(data) {
 RecupererLesClasse();
 
 RecupereCours();
+
+document.querySelector("form").addEventListener("submit", (element) => {
+    element.preventDefault();
+    const formdata = new FormData(element.target);
+
+    let classe = formdata.get("classe")
+    let cours = formdata.get("cours")
+    let jour = formdata.get("jour")
+    let heure_debut = formdata.get("heure_debut")
+    let heure_fin = formdata.get("heure_fin")
+    let salle = formdata.get("salle")
+
+    AjouterCreneau(classe,cours,jour,heure_debut,heure_fin,salle)
+
+})
+
+async function AjouterCreneau(classe, cours, jour, heure_debut, heure_fin, salle) {
+    const url = 'http://localhost/3e/AWEB2/Hottelier_Theo_AWEB3_UE1_Revision_Horai/api/EpCreneau.php';
+    
+    const options = {
+        method: 'POST',
+        headers: {
+            Authorization: 'Bearer a67c5992c04712fdf23dd8be5e7a6bc6',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            classe: classe,
+            cours: cours,
+            jour: jour,
+            heure_debut: heure_debut,
+            heure_fin: heure_fin,
+            salle: salle
+        })
+    };
+
+    try {
+        const response = await fetch(url, options);
+        
+        if (!response.ok) throw new Error("Erreur lors de l'ajout du créneau");
+
+        const data = await response.json();
+        console.log("Succès :", data);
+        document.querySelector("#alert").classList.remove("d-none");
+        document.querySelector("#alert").innerHTML = "Ajout Reussi"
+    } catch (error) {
+        console.error("Erreur :", error);
+        document.querySelector("#alert").classList.remove("alert-success");
+        document.querySelector("#alert").innerHTML = "Ajout louper"
+        document.querySelector("#alert").classList.add("alert-danger");
+    }
+}

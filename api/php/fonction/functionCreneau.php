@@ -131,7 +131,7 @@ function TraiterPost(array $body): array
         ];
     } else {
         return [
-            "code" => $code,
+            "code" => HTTP_BAS_REQUEST,
             "data" => $data
         ];
     }
@@ -228,7 +228,7 @@ function TraiterPut(array $body, string $token): array
         ];
     } else {
         return [
-            "code" => $code,
+            "code" => HTTP_BAS_REQUEST,
             "data" => $data
         ];
     }

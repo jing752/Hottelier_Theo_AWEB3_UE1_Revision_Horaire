@@ -19,60 +19,63 @@
     </header>
 
     <main class="container d-flex justify-content-center align-items-center flex-grow-1 my-4">
-<div class="col-md-6 col-lg-4 p-4 shadow rounded bg-light">
-    <h2 class="mb-4 text-center">Ajouter</h2>
-    <form>
-        
-        <div class="mb-3">
-            <label for="classe" class="form-label">Classe</label>
-            <select id="classe" class="form-select" aria-label="Sélectionner la classe">
-                <option selected disabled>Choisir une classe</option>
-            </select>
-        </div>
+        <div class="col-md-6 col-lg-4 p-4 shadow rounded bg-light">
+            <h2 class="mb-4 text-center">Ajouter</h2>
+            <form>
 
-        
-        <div class="mb-3">
-            <label for="cours" class="form-label">Cours</label>
-            <select id="cours" class="form-select" aria-label="Sélectionner le cours">
-                <option selected disabled>Choisir un cours</option>
-            </select>
-        </div>
+                <div class="mb-3">
+                    <label for="classe" class="form-label">Classe</label>
+                    <select id="classe" name="classe" class="form-select" aria-label="Sélectionner la classe">
+                        <option selected disabled>Choisir une classe</option>
+                    </select>
+                </div>
 
-        
-        <div class="mb-3">
-            <label for="jour" class="form-label">Jour</label>
-            <select id="jour" class="form-select" aria-label="Sélectionner le jour">
-                <option selected disabled>Choisir un jour</option>
-                <option value="lundi">Lundi</option>
-                <option value="mardi">Mardi</option>
-                <option value="mercredi">Mercredi</option>
-                <option value="jeudi">Jeudi</option>
-                <option value="vendredi">Vendredi</option>
-            </select>
-        </div>
 
-        
-        <div class="mb-3">
-            <label for="salle" class="form-label">Salle (Numéro)</label>
-            <input type="number" class="form-control" id="salle" step="1" placeholder="Ex: 102" required>
-        </div>
+                <div class="mb-3">
+                    <label for="cours" class="form-label">Cours</label>
+                    <select id="cours" name="cours" class="form-select" aria-label="Sélectionner le cours">
+                        <option selected disabled>Choisir un cours</option>
+                    </select>
+                </div>
 
-        
-        <div class="mb-3">
-            <label for="heureDebut" class="form-label">Heure de début</label>
-            <input type="time" class="form-control" id="heureDebut" required>
-        </div>
-        
-        
-        <div class="mb-3">
-            <label for="heureFin" class="form-label">Heure de fin</label>
-            <input type="time" class="form-control" id="heureFin" required>
-        </div>
 
-        
-        <button type="submit" class="btn btn-primary w-100">Ajouter</button>
-    </form>
-</div>
+                <div class="mb-3">
+                    <label for="jour" class="form-label">Jour</label>
+                    <select id="jour" name="jour" class="form-select" aria-label="Sélectionner le jour">
+                        <option selected disabled>Choisir un jour</option>
+                        <option value="lundi">Lundi</option>
+                        <option value="mardi">Mardi</option>
+                        <option value="mercredi">Mercredi</option>
+                        <option value="jeudi">Jeudi</option>
+                        <option value="vendredi">Vendredi</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="salle" class="form-label">Salle (Numéro)</label>
+                    <input type="number" name="salle" class="form-control" id="salle" step="1" placeholder="Ex: 102"
+                        required>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="heureDebut" class="form-label">Heure de début</label>
+                    <input type="time" name="heure_debut" class="form-control" id="heureDebut" required>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="heureFin" class="form-label">Heure de fin</label>
+                    <input type="time" name="heure_fin" class="form-control" id="heureFin" required>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary w-100">Ajouter</button>
+            </form>
+            <div id="alert" class="alert alert-success d-none" role="alert">
+            </div>
+        </div>
     </main>
 
     <footer class="bg-white text-black text-center py-3 mt-auto">
