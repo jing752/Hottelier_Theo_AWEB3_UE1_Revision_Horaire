@@ -10,7 +10,7 @@ function TraiterGet()
         if(!GetClasseByName($id)){
          return [
                 "code" => HTTP_BAS_REQUEST,
-                "data" => ["cours" => "ce cours n'existe pas"]
+                "data" => ["cours" => "Ce Cours n'existe pas"]
             ];
         }
         else{

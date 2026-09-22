@@ -6,7 +6,7 @@ async function RecupererLesClasse() {
     const classe = params.get("nom");
     document.querySelector("h1").innerHTML += classe;
     const url = `http://localhost/3e/AWEB2/Hottelier_Theo_AWEB3_UE1_Revision_Horai/api/EpCreneau.php?name=${classe}`;
-    
+
     try {
         const reponse = await fetch(url);
 
@@ -16,14 +16,15 @@ async function RecupererLesClasse() {
         AfficheClasse(data);
 
     } catch (err) {
-        document.querySelector("#horaire").innerHTML = `<p>${err.message}</p>`;
+
+        document.querySelector("#table").innerHTML = `<h1 class="text-danger">${err.message}</h1>`;
     }
 }
 
 function AfficheClasse(data) {
     const container = document.querySelector("#horaire");
     let html = "";
-    
+
     data.forEach(element => {
         html += `<tr>
                     <th scope="row">${element.id}</th>
@@ -36,6 +37,6 @@ function AfficheClasse(data) {
                     <td><a href="#" class="btn btn-sm btn-danger">Supprimer</a></td>
                 </tr>`;
     });
-    
+
     container.innerHTML = html;
 }
