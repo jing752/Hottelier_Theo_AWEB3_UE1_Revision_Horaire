@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS `db_Horaire`;
+USE `db_Horaire`;
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.1deb3
 -- https://www.phpmyadmin.net/

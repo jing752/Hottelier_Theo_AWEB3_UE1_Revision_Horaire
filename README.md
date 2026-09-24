@@ -59,3 +59,9 @@ Pour ma part, cela fait plus ou moins depuis mars que je n'ai pas pratiqué PHP,
 ### Absences
 
 Mes absences répétées lors de l'atelier ont fait que je n'ai pas pu respecter les délais.
+
+## Mise en place du projet
+
+importer le fichier sql dans /sql/init.sql
+
+Modifier le fichier de config dans api/php/db/dbConfig.php
